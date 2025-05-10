@@ -8,6 +8,10 @@ jobs:
   lint-and-test:
     runs-on: ubuntu-latest
 
+    # ← add this so Python (and Flake8/pytest) sees `src/` as a module
+    env:
+      PYTHONPATH: ./src
+
     steps:
       - uses: actions/checkout@v3
 
@@ -23,7 +27,6 @@ jobs:
 
       - name: Lint with flake8
         run: |
-          # stop the build if there are Python syntax errors or undefined names
           flake8 src tests
 
       - name: Run tests
