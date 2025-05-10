@@ -1,8 +1,9 @@
 import os
 
 import pandas as pd
-from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder
 
 
@@ -20,11 +21,16 @@ def train_and_evaluate(df: pd.DataFrame):
 
 
 def train_cancer_type_classifier(df: pd.DataFrame):
+    """
+    Train a 1-NN classifier on Year→Cancer_Type for demo purposes.
+    Works even if there's only one class.
+    """
     X = df[['Year']]
     y = df['Cancer_Type']
     le = LabelEncoder().fit(y)
     y_enc = le.transform(y)
-    clf = LogisticRegression(max_iter=200).fit(X, y_enc)
+    # 1-NN works on single-sample data
+    clf = KNeighborsClassifier(n_neighbors=1).fit(X, y_enc)
     return clf, le
 
 
