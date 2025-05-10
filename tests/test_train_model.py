@@ -1,5 +1,4 @@
 import os
-import pandas as pd
 from src.train_model import load_data, train_and_evaluate
 
 DATA_PATH = os.path.join("data", "global_cancer_patients_2015_2024.csv")
