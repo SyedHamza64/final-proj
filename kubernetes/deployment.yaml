@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: final-proj-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: final-proj
+  template:
+    metadata:
+      labels:
+        app: final-proj
+    spec:
+      containers:
+        - name: final-proj
+          image: hamzah64/final-proj:latest
+          ports:
+            - containerPort: 80
